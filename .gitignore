@@ -1,0 +1,10 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+# Secretos / entorno — NUNCA versionar (recordar incidente .env logistika)
+.env
+config.php
+*.local.php
+# temporales
+/tmp/

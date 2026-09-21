@@ -1,0 +1,21 @@
+# robots.txt — Culebro Abogados
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# Motores generativos (GEO): permitidos a propósito, queremos ser citados.
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.cglegal.com.mx/sitemap.xml
