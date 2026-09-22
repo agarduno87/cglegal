@@ -71,3 +71,6 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
       });
   });
 })();
+
+/* --- auto-idioma: si la página declara lang="en", renderiza en inglés --- */
+(function(){ if(document.documentElement.lang==='en'){ try{ setLang('en'); }catch(e){} } })();
