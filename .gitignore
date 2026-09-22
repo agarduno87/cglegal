@@ -8,3 +8,6 @@ config.php
 *.local.php
 # temporales
 /tmp/
+# Fase 2 (portal)
+portal/lib/config.php
+db/*.sqlite
