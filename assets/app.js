@@ -34,7 +34,7 @@ const DICT={en:{
  r3:'Beyond the résumé, what sets him apart is a way of practicing: understand the client\'s business first and the legal problem second.',
  r4:'Education, memberships and career details: to be confirmed with the firm.'
 }};
-function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(el=>{const k=el.dataset.t;if(l==='en'&&DICT.en[k]!=null){if(!el.dataset.es)el.dataset.es=el.innerHTML;el.innerHTML=DICT.en[k]}else if(l==='es'&&el.dataset.es!=null){el.innerHTML=el.dataset.es}});document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l))}
+function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(el=>{const k=el.dataset.t;if(l==='en'&&DICT.en[k]!=null){if(!el.dataset.es)el.dataset.es=el.innerHTML;el.innerHTML=DICT.en[k]}else if(l==='es'&&el.dataset.es!=null){el.innerHTML=el.dataset.es}});document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l));var bl=document.querySelector('a[data-t="broc"]');if(bl){bl.href=bl.getAttribute('href').replace(/Brochure%20CA%20(Esp|Eng)\.pdf/,'Brochure%20CA%20'+(l==='en'?'Eng':'Esp')+'.pdf')}}
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
 
 /* --- trampa de tiempo: marca de render --- */
