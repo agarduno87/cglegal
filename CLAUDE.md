@@ -6,6 +6,16 @@ Es un despacho legal con consultoría, no al revés. Trabajo **para cliente**, p
 Repo: github.com/agarduno87/cglegal · Pages (staging visual): agarduno87.github.io/cglegal/
 Última actualización: sep 2026.
 
+## Cambios recientes (sep 2026)
+- Textos: equipo "El despacho, en sus albores."; Publicaciones "Compromisos.".
+- Publicaciones: 4 tarjetas (agregada Gobierno e infraestructura) que enlazan a
+  páginas propias en `/publicaciones/`. **Se quitó** la leyenda "Artículo de ejemplo…".
+- Footer: crédito ahora "© 2026 Culebro Abogados · by Datara Hub" (se quitó el 2º 2026).
+- **Entregado al cliente un PDF machote** con TODO el contenido público (home +
+  subpáginas) para su **ronda de adecuación de contenido**. El portal NO entra en ese
+  ejercicio.
+- Fase 2 (portal) construida y probada: usuarios/roles + asuntos (ver abajo).
+
 ## Ramas
 - **`main` = producción** (sitio público). Es lo que se despliega. NO romper.
 - **`fase2` = portal** (`/portal/`, PHP+MySQL). Se fusiona a `main` cuando esté probado.
@@ -65,8 +75,10 @@ portal/  db/          Fase 2 (ver abajo) — presentes en rama fase2
 - **Leads**: llegan por **correo a contacto@cglegal.com.mx** (+ autorespuesta). **No
   hay UI de leads** en el portal (por decisión del cliente).
 - **Misión/visión/valores**: textos placeholder marcados "por confirmar".
-- **Publicaciones y legales**: contenido de ejemplo / borrador — el despacho redacta
-  y el abogado valida antes de publicar.
+- **Publicaciones**: contenido de EJEMPLO (ya sin la leyenda de aviso). Pendiente
+  **ronda de adecuación de contenido** con el cliente (se le entregó PDF machote).
+  **Legales**: borradores, validar con abogado (esos SÍ conservan su aviso).
+- **Footer**: "© 2026 Culebro Abogados · by Datara Hub" (link provisional a techStudio).
 - Encabezados actuales: equipo "El despacho, en sus albores." (SÍ es "albores");
   publicaciones "Compromisos."
 
