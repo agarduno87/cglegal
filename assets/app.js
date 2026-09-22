@@ -36,3 +36,38 @@ const DICT={en:{
 }};
 function setLang(l){document.documentElement.lang=l;document.querySelectorAll('[data-t]').forEach(el=>{const k=el.dataset.t;if(l==='en'&&DICT.en[k]!=null){if(!el.dataset.es)el.dataset.es=el.innerHTML;el.innerHTML=DICT.en[k]}else if(l==='es'&&el.dataset.es!=null){el.innerHTML=el.dataset.es}});document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.lang===l))}
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+
+/* --- trampa de tiempo: marca de render --- */
+(function(){var ra=document.getElementById('rendered_at'); if(ra) ra.value=Date.now();})();
+
+/* --- si llega con #hash (p.ej. desde un área), salta la intro y baja al form --- */
+(function(){var h=location.hash; if(h && h.length>1 && document.querySelector(h)){
+  var i=document.getElementById('intro'); if(i){i.classList.add('gone');} document.body.classList.remove('locked');
+  setTimeout(function(){var t=document.querySelector(h); if(t) t.scrollIntoView();},60);
+}})();
+
+/* --- envío del formulario de contacto --- */
+(function(){
+  var lf=document.getElementById('lead-form'); if(!lf) return;
+  lf.addEventListener('submit', function(e){
+    e.preventDefault();
+    var st=document.getElementById('form-status');
+    var loc=(document.documentElement.lang==='en')?'en':'es';
+    var data={}; new FormData(lf).forEach(function(v,k){data[k]=v;}); data.locale=loc;
+    st.hidden=false; st.className='form-status'; st.textContent=(loc==='en'?'Sending…':'Enviando…');
+    fetch('contact.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(function(r){ if(!r.ok) throw new Error('http'); return r.json(); })
+      .then(function(){
+        st.className='form-status ok';
+        st.textContent=(loc==='en'?'Thank you. An attorney will contact you shortly.':'¡Gracias! Un abogado te contactará en breve.');
+        lf.reset(); var ra=document.getElementById('rendered_at'); if(ra) ra.value=Date.now();
+      })
+      .catch(function(){
+        /* Fallback (p.ej. GitHub Pages sin PHP): abre el correo del visitante */
+        var subj=encodeURIComponent('Contacto web — '+(data.name||''));
+        var body=encodeURIComponent('Nombre: '+(data.name||'')+'\nCorreo: '+(data.email||'')+'\nTeléfono: '+(data.phone||'')+'\n\n'+(data.message||''));
+        st.className='form-status'; st.textContent=(loc==='en'?'Opening your email app…':'Abriendo tu correo…');
+        location.href='mailto:contacto@cglegal.com.mx?subject='+subj+'&body='+body;
+      });
+  });
+})();

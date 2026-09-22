@@ -132,3 +132,12 @@ dialog.cv{border:0;border-radius:8px;padding:0;max-width:640px;width:92%}dialog.
 .ph-comercio-exterior{background-image:url(areas/comercio-exterior.jpg)}
 .ph-gobierno-infraestructura{background-image:url(areas/gobierno-infraestructura.jpg)}
 .ph-actividades-filantropicas{background-image:url(areas/actividades-filantropicas.jpg)}
+
+/* --- footer: redes + crédito + estado del formulario --- */
+.foot-social{display:flex;gap:16px;align-items:center}
+.foot-social a{color:var(--gris);display:inline-flex}
+.foot-social a:hover{color:var(--ox)}
+.foot-social svg{width:20px;height:20px;fill:currentColor}
+.foot-credit{color:var(--gris)}.foot-credit a{color:var(--ox)}
+.form-status{margin-top:14px;font-size:15px}
+.form-status.ok{color:#2a7a4a}.form-status.err{color:var(--ox)}
