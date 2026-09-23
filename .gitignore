@@ -6,6 +6,10 @@ Thumbs.db
 .env
 config.php
 *.local.php
+# Base de datos (dev/prod) — nunca versionar: puede traer usuarios/hashes/PII
+db/*.sqlite
+db/*.sqlite3
+db/*.db
 # temporales
 /tmp/
 # Fase 2 (portal)
