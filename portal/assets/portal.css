@@ -47,3 +47,30 @@ button:hover{background:var(--ox)}button.danger{background:#8a2b2b}
 .dim{color:var(--gris);font-size:12px}.mt{margin-top:16px}
 .casecard{background:var(--papel);border:1px solid var(--linea);border-radius:10px;padding:20px 24px;margin-bottom:16px}
 .casecard .ch{display:flex;align-items:center;gap:12px;justify-content:space-between}
+/* --- Fase 2.1: expediente de trabajo --- */
+.kpi.alert b{color:#8a2b2b}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:800px){.cols2,.grid2{grid-template-columns:1fr}}
+.mtabs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+@media(max-width:900px){.mtabs{grid-template-columns:1fr}}
+.mcard{background:var(--papel);border:1px solid var(--linea);border-radius:10px;padding:16px 18px}
+.mcard h2{font-size:17px;margin:0 0 12px}
+.mcard .row-form{background:transparent;border:0;padding:0;margin-bottom:10px}
+.mcard .row-form input,.mcard .row-form select{font-size:13px}
+.mlist{list-style:none;margin:6px 0 0;padding:0}
+.mlist li{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--linea);font-size:14px}
+.mlist li:first-child{border-top:0}
+.mlist li.done>span:first-child{text-decoration:line-through;color:var(--gris)}
+.mlist li.over>span:first-child{color:#8a2b2b}
+.acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.acts form{display:inline}
+button.mini{padding:4px 8px;font-size:12px}
+.tag{display:inline-block;background:#efece4;color:#5a564d;border-radius:20px;padding:1px 9px;font-size:11px;font-weight:600}
+.tag.over{background:#f3dede;color:#8a2b2b}.tag.conf{background:#f3e7ea;color:#7C2E3B}
+.tag.r-pedido{background:#e7eef7;color:#2c4a70}.tag.r-pendiente{background:#fbeede;color:#7a5410}.tag.r-recibido{background:#e6efe8;color:#245c3a}
+.sev{display:inline-block;border-radius:20px;padding:2px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.s-alto{background:#f3dede;color:#8a2b2b}.s-medio{background:#fbeede;color:#7a5410}.s-bajo{background:#e6efe8;color:#245c3a}
+.prog{background:#efece4;border-radius:20px;height:8px;overflow:hidden;margin:6px 0}
+.prog>div{background:#2a7a4a;height:100%}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gris)}
+.chk input{width:auto}

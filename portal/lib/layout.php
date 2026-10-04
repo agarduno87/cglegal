@@ -1,6 +1,6 @@
 <?php require_once __DIR__.'/auth.php'; require_once __DIR__.'/models.php';
 function nav_links(string $role): array {
-  if ($role==='admin') return [['/portal/admin/','Inicio'],['/portal/admin/usuarios.php','Usuarios'],['/portal/admin/asuntos.php','Asuntos']];
+  if ($role==='admin') return [['/portal/admin/','Inicio'],['/portal/admin/usuarios.php','Usuarios'],['/portal/admin/asuntos.php','Asuntos'],['/portal/admin/conflictos.php','Conflictos']];
   if ($role==='abogado') return [['/portal/abogado/','Mis asuntos']];
   return [['/portal/cliente/','Mis asuntos']];
 }

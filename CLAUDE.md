@@ -136,12 +136,21 @@ prepared statements, escape con `h()`.
 - **Asuntos**: admin crea/edita/asigna cliente+abogado/estado/elimina + notas;
   abogado ve solo asignados (guard por-asunto=403), cambia estado, agrega notas;
   cliente ve sus asuntos + seguimiento (solo lectura).
+- **Expediente de trabajo (Fase 2.1, A/B/C/D)** — en `portal/lib/matter.php` (compartido
+  admin+abogado, sub-acciones con campo `m_action`): plazos/vencimientos (con alertas),
+  tareas (responsable+fecha), partes/contactos, meta del caso (no. expediente, autoridad,
+  cuantía+moneda, riesgo), checklist con plantillas por tipo, requerimientos al cliente,
+  hallazgos con severidad, tiempo y honorarios, bitácora por asunto, y **conflicto de
+  interés** (`portal/admin/conflictos.php` + aviso al crear). Dashboards con KPIs.
+- **Documentos**: subida endurecida (whitelist ext + `finfo`, 20 MB, nombre aleatorio),
+  **fuera de la raíz** en `db/uploads/` (`Require all denied`), servidos por
+  `portal/download.php` con control de acceso. `db/uploads/` gitignorado.
 - **Correr local**: `cd portal && php dev-seed.php` → `cd .. && php -S localhost:8000`
   → `/portal/login.php`. Usuarios prueba: admin@/abogado@/cliente@cglegal.com.mx
   (pass = rol+123).
-- **Pendiente Fase 2**: subida de **documentos** endurecida (LFPDPPP + secreto
-  profesional — lo más sensible, va al final), bloqueo por intentos de login, y
-  migración/staging en GoDaddy (MySQL).
+- **Pendiente Fase 2**: bloqueo por intentos de login y migración/staging en GoDaddy
+  (MySQL; `db/schema.mysql.sql` ya trae todas las tablas del expediente). La subida de
+  documentos endurecida (LFPDPPP) YA quedó hecha.
 
 ## Correr y desplegar
 - Local (con PHP, prueba el form): `php -S localhost:8000` en la raíz → abrir `/`.

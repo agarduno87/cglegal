@@ -19,3 +19,5 @@ dist/
 cglegal-public.zip
 __pycache__/
 *.pyc
+# Documentos del expediente (confidenciales) — nunca versionar
+db/uploads/

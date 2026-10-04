@@ -8,7 +8,10 @@ if (($_SERVER['REQUEST_METHOD']??'')==='POST') {
     $lid=($_POST['lawyer_id']??'')!==''?(int)$_POST['lawyer_id']:null;
     if ($t===''||mb_strlen($t)>200) post_redirect('/portal/admin/asuntos.php','','Título inválido.');
     if (!in_array($st,STATUSES,true)) $st='nuevo';
-    $id=case_create($t,$area,$cid,$lid,$st); audit('case_create:'.$id); post_redirect('/portal/admin/asunto.php?id='.$id,'Asunto creado.');
+    // verificación de conflicto de interés sobre el cliente seleccionado
+    $warn=''; if($cid){ $cu=user_get($cid); if($cu){ $hits=conflict_check($cu['name']); if($hits) $warn=' ⚠ Posible conflicto: '.implode('; ',$hits); } }
+    $id=case_create($t,$area,$cid,$lid,$st); audit('case_create:'.$id);
+    post_redirect('/portal/admin/asunto.php?id='.$id, $warn?('Asunto creado.'.$warn):'Asunto creado.');
   }
   post_redirect('/portal/admin/asuntos.php');
 }
