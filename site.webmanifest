@@ -1,0 +1,16 @@
+{
+  "name": "Culebro Abogados",
+  "short_name": "Culebro",
+  "description": "Despacho corporativo e inmobiliario en Los Cabos y Querétaro.",
+  "lang": "es-MX",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#F2F0EA",
+  "theme_color": "#7C2E3B",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

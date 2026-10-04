@@ -27,7 +27,7 @@ const DICT={en:{
  'in-h':'Commitments.',c1:'Real estate',c2:'Foreign trade',c3:'Corporate',
  in1:'Buying in a restricted zone: the trust, without myths.',in2:'Customs compliance for the new importer.',in3:'Corporate governance that actually protects shareholders.',c4:'Government & infrastructure',in4:'Public tenders without surprises.',leer:'Read →',
  'ct-h':'Contact',f1:'Name',f2:'Email',f3:'Phone',f4:'Practice area',f5:'Tell us about your matter',f6:'Send',
- al:'Explore this area →',rights:'All rights reserved.',fp1:'Privacy notice',fp2:'Terms & conditions',broc:'Download brochure (PDF)',
+ al:'Explore this area →',rights:'All rights reserved.',fp1:'Privacy notice',fp2:'Terms & conditions',fl1:'Practice areas',fl2:'The firm',fl3:'Publications',fl4:'FAQ',broc:'Download brochure (PDF)',
  ar4:'Provisional bio: Javier\'s is shown until Alejandro\'s CV is provided.',
  r1:'Javier Culebro Galván founded Culebro Abogados on a simple conviction: that top-tier legal counsel should feel close, not distant.',
  r2:'His work has centered where foreign capital meets the Mexican framework: real-estate and hospitality acquisitions, investment structures, and the legal audits that bring certainty to complex deals.',
