@@ -12,3 +12,9 @@ db/*.sqlite3
 db/*.db
 # temporales
 /tmp/
+
+# Build local (no versionar la salida del generador)
+dist/
+cglegal-public.zip
+__pycache__/
+*.pyc
