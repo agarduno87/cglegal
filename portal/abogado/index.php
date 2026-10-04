@@ -2,13 +2,23 @@
 $me=current_user()['id']; $cases=cases_for_lawyer($me);
 $cutoff=date('Y-m-d', strtotime('+14 days')); $soon=deadlines_upcoming($cutoff,(int)$me);
 $tasks=tasks_open_for((int)$me); $today=date('Y-m-d');
+$clientDocs=client_docs_for_lawyer((int)$me);
 shell_top('Mis asuntos'); ?>
 <h1>Mi panel</h1>
 <div class="cards">
   <div class="kpi"><b><?=count($cases)?></b><span>Mis asuntos</span></div>
   <div class="kpi"><b><?=count($soon)?></b><span>Plazos ≤14 días</span></div>
   <div class="kpi"><b><?=count($tasks)?></b><span>Tareas abiertas</span></div>
+  <div class="kpi<?=count($clientDocs)?' alert':''?>"><b><?=count($clientDocs)?></b><span>Docs del cliente</span></div>
 </div>
+<?php if($clientDocs): ?>
+<section class="mcard"><h2>📨 Documentos recientes del cliente</h2>
+  <ul class="mlist"><?php foreach($clientDocs as $d): ?>
+    <li><span>📄 <a href="/portal/download.php?doc=<?=$d['id']?>"><?=h($d['orig_name'])?></a> <span class="dim">· <?=h($d['ctitle'])?> · <?=h($d['uploader'])?> · <?=h($d['created_at'])?></span></span>
+      <span class="acts"><a class="btnlink" href="/portal/abogado/asunto.php?id=<?=$d['case_id']?>">Abrir asunto</a></span></li>
+  <?php endforeach; ?></ul>
+</section>
+<?php endif; ?>
 <div class="cols2">
   <section class="mcard"><h2>Mis próximos plazos</h2>
     <ul class="mlist"><?php foreach($soon as $d): $ov=$d['due_date']<$today; ?>

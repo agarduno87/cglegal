@@ -62,6 +62,7 @@ function document_add(int $cid,string $orig,string $stored,string $cat,string $m
 function document_get(int $id): ?array { $s=db()->prepare("SELECT * FROM documents WHERE id=?"); $s->execute([$id]); return $s->fetch(PDO::FETCH_ASSOC)?:null; }
 function document_set_visibility(int $id,int $cid,int $v): void { db()->prepare("UPDATE documents SET visible_to_client=? WHERE id=? AND case_id=?")->execute([$v,$id,$cid]); }
 function document_del(int $id,int $cid): void { db()->prepare("DELETE FROM documents WHERE id=? AND case_id=?")->execute([$id,$cid]); }
+function client_docs_for_lawyer(int $lid): array { $s=db()->prepare("SELECT d.*, c.title AS ctitle, u.name AS uploader FROM documents d JOIN cases c ON c.id=d.case_id LEFT JOIN users u ON u.id=d.uploaded_by WHERE c.lawyer_id=? AND u.role='cliente' ORDER BY d.created_at DESC LIMIT 10"); $s->execute([$lid]); return $s->fetchAll(PDO::FETCH_ASSOC); }
 
 /* ---- Hallazgos / due diligence (B8) ---- */
 function findings_for(int $cid): array { $s=db()->prepare("SELECT f.*, u.name AS author FROM findings f LEFT JOIN users u ON u.id=f.created_by WHERE f.case_id=? ORDER BY CASE f.severity WHEN 'alto' THEN 0 WHEN 'medio' THEN 1 ELSE 2 END, f.created_at DESC"); $s->execute([$cid]); return $s->fetchAll(PDO::FETCH_ASSOC); }

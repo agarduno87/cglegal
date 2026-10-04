@@ -11,10 +11,11 @@ function flash(): string {
 function shell_top(string $title){ $u=current_user(); ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title><?=h($title)?> — Culebro</title>
-<link rel="icon" type="image/png" href="/assets/icono-color.png"><link rel="stylesheet" href="/portal/assets/portal.css"></head>
+<link rel="icon" type="image/png" href="/assets/icono-color.png">
+<link rel="stylesheet" href="/assets/fonts.css"><link rel="stylesheet" href="/portal/assets/portal.css"></head>
 <body><header class="top"><a class="brand" href="/portal/"><img src="/assets/icono-color.png" alt=""><b>Portal Culebro</b></a>
 <nav class="mainnav"><?php foreach(nav_links($u['role']) as [$href,$t]) echo '<a href="'.h($href).'">'.h($t).'</a>'; ?></nav>
 <span class="who"><?=h($u['name'])?> · <span class="role"><?=h($u['role'])?></span> · <a href="/portal/logout.php">Salir</a></span></header>
 <main class="wrap"><?php echo flash(); }
-function shell_bottom(){ ?></main></body></html><?php }
+function shell_bottom(){ ?></main><script src="/portal/assets/portal.js" defer></script></body></html><?php }
 function post_redirect(string $url,string $ok='',string $err=''){ $sep=(strpos($url,'?')!==false)?'&':'?'; $q=$ok?($sep.'ok='.urlencode($ok)):($err?($sep.'err='.urlencode($err)):''); header('Location: '.$url.$q); exit; }
