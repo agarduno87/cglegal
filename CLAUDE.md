@@ -142,9 +142,13 @@ prepared statements, escape con `h()`.
   cuantía+moneda, riesgo), checklist con plantillas por tipo, requerimientos al cliente,
   hallazgos con severidad, tiempo y honorarios, bitácora por asunto, y **conflicto de
   interés** (`portal/admin/conflictos.php` + aviso al crear). Dashboards con KPIs.
-- **Documentos**: subida endurecida (whitelist ext + `finfo`, 20 MB, nombre aleatorio),
-  **fuera de la raíz** en `db/uploads/` (`Require all denied`), servidos por
-  `portal/download.php` con control de acceso. `db/uploads/` gitignorado.
+- **Documentos (intercambio bidireccional)**: subida endurecida (whitelist ext + `finfo`,
+  20 MB, nombre aleatorio), **fuera de la raíz** en `db/uploads/` (`Require all denied`),
+  servidos por `portal/download.php` con control de acceso. `db/uploads/` gitignorado.
+  Abogado/admin comparten con el cliente (`visible_to_client`); el **cliente sube** a sus
+  propios asuntos (contra un requerimiento → lo marca «recibido», o en general). El cliente
+  solo descarga lo compartido o lo que él subió (trabajo interno nunca visible). Helper
+  reutilizable `doc_store()` en `portal/lib/matter.php`.
 - **Correr local**: `cd portal && php dev-seed.php` → `cd .. && php -S localhost:8000`
   → `/portal/login.php`. Usuarios prueba: admin@/abogado@/cliente@cglegal.com.mx
   (pass = rol+123).

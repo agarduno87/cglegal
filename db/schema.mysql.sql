@@ -75,9 +75,13 @@ CREATE TABLE IF NOT EXISTS documents (
   id INT AUTO_INCREMENT PRIMARY KEY, case_id INT NOT NULL,
   orig_name VARCHAR(200) NOT NULL, stored_name VARCHAR(120) NOT NULL,
   category VARCHAR(40) DEFAULT 'otro', mime VARCHAR(120), size INT,
-  confidential TINYINT NOT NULL DEFAULT 1, uploaded_by INT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  confidential TINYINT NOT NULL DEFAULT 1,
+  visible_to_client TINYINT NOT NULL DEFAULT 0,
+  uploaded_by INT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (case_id) REFERENCES cases(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Si la tabla ya existía sin la columna:
+-- ALTER TABLE documents ADD COLUMN visible_to_client TINYINT NOT NULL DEFAULT 0 AFTER confidential;
 
 CREATE TABLE IF NOT EXISTS findings (
   id INT AUTO_INCREMENT PRIMARY KEY, case_id INT NOT NULL,

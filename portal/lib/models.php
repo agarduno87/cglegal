@@ -56,9 +56,11 @@ function party_add(int $cid,string $name,string $role,?string $org,?string $emai
 function party_del(int $id,int $cid): void { db()->prepare("DELETE FROM parties WHERE id=? AND case_id=?")->execute([$id,$cid]); }
 
 /* ---- Documentos / expediente (A2) ---- */
-function documents_for(int $cid): array { $s=db()->prepare("SELECT d.*, u.name AS uploader FROM documents d LEFT JOIN users u ON u.id=d.uploaded_by WHERE d.case_id=? ORDER BY d.created_at DESC"); $s->execute([$cid]); return $s->fetchAll(PDO::FETCH_ASSOC); }
-function document_add(int $cid,string $orig,string $stored,string $cat,string $mime,int $size,int $conf,?int $by): void { db()->prepare("INSERT INTO documents(case_id,orig_name,stored_name,category,mime,size,confidential,uploaded_by) VALUES(?,?,?,?,?,?,?,?)")->execute([$cid,$orig,$stored,$cat,$mime,$size,$conf,$by]); }
+function documents_for(int $cid): array { $s=db()->prepare("SELECT d.*, u.name AS uploader, u.role AS uploader_role FROM documents d LEFT JOIN users u ON u.id=d.uploaded_by WHERE d.case_id=? ORDER BY d.created_at DESC"); $s->execute([$cid]); return $s->fetchAll(PDO::FETCH_ASSOC); }
+function documents_for_client(int $cid,int $client_uid): array { $s=db()->prepare("SELECT d.*, u.name AS uploader, u.role AS uploader_role FROM documents d LEFT JOIN users u ON u.id=d.uploaded_by WHERE d.case_id=? AND (d.visible_to_client=1 OR d.uploaded_by=?) ORDER BY d.created_at DESC"); $s->execute([$cid,$client_uid]); return $s->fetchAll(PDO::FETCH_ASSOC); }
+function document_add(int $cid,string $orig,string $stored,string $cat,string $mime,int $size,int $conf,int $visible,?int $by): int { db()->prepare("INSERT INTO documents(case_id,orig_name,stored_name,category,mime,size,confidential,visible_to_client,uploaded_by) VALUES(?,?,?,?,?,?,?,?,?)")->execute([$cid,$orig,$stored,$cat,$mime,$size,$conf,$visible,$by]); return (int)db()->lastInsertId(); }
 function document_get(int $id): ?array { $s=db()->prepare("SELECT * FROM documents WHERE id=?"); $s->execute([$id]); return $s->fetch(PDO::FETCH_ASSOC)?:null; }
+function document_set_visibility(int $id,int $cid,int $v): void { db()->prepare("UPDATE documents SET visible_to_client=? WHERE id=? AND case_id=?")->execute([$v,$id,$cid]); }
 function document_del(int $id,int $cid): void { db()->prepare("DELETE FROM documents WHERE id=? AND case_id=?")->execute([$id,$cid]); }
 
 /* ---- Hallazgos / due diligence (B8) ---- */

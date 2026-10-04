@@ -13,7 +13,8 @@ if (!$c) { http_response_code(404); echo 'No encontrado.'; exit; }
 $role = $u['role'] ?? '';
 $allowed = ($role==='admin')
   || ($role==='abogado' && (int)$c['lawyer_id']===(int)$u['id'])
-  || ($role==='cliente' && (int)$c['client_id']===(int)$u['id']);
+  || ($role==='cliente' && (int)$c['client_id']===(int)$u['id']
+        && ((int)$doc['visible_to_client']===1 || (int)$doc['uploaded_by']===(int)$u['id']));
 if (!$allowed) { http_response_code(403); echo 'Acceso denegado.'; exit; }
 
 $path = uploads_dir().'/'.basename($doc['stored_name']);

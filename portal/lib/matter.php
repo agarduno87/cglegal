@@ -35,6 +35,8 @@ function matter_handle_post(int $cid, string $base): void {
         party_add($cid,$gs('name'),$r,$gs('org')?:null,$gs('email')?:null,$gs('phone')?:null,$gs('notes')?:null); audit("party_add:$cid"); } post_redirect($base,'Parte agregada.');
     case 'party_del': party_del((int)$_POST['pid'],$cid); post_redirect($base,'Parte eliminada.');
     case 'doc_upload': matter_upload($cid,$base,$uid);
+    case 'doc_share':
+      $d=document_get((int)$_POST['docid']); if($d && (int)$d['case_id']===$cid){ document_set_visibility((int)$d['id'],$cid,1-(int)$d['visible_to_client']); audit("doc_share:$cid"); } post_redirect($base,'Visibilidad actualizada.');
     case 'doc_del':
       $d=document_get((int)$_POST['docid']); if($d && (int)$d['case_id']===$cid){ @unlink(uploads_dir().'/'.$d['stored_name']); document_del((int)$d['id'],$cid); audit("doc_del:$cid"); } post_redirect($base,'Documento eliminado.');
     case 'finding_add':
@@ -56,20 +58,26 @@ function matter_handle_post(int $cid, string $base): void {
   }
 }
 
-function matter_upload(int $cid, string $base, ?int $uid): void {
-  if (!isset($_FILES['file']) || ($_FILES['file']['error']??UPLOAD_ERR_NO_FILE)!==UPLOAD_ERR_OK)
-    post_redirect($base,'','No se recibió el archivo.');
-  $f=$_FILES['file'];
-  if ($f['size']>DOC_MAX) post_redirect($base,'','El archivo supera 20 MB.');
+/** Valida y almacena un archivo subido. Devuelve [ok, mensaje, doc_id]. Reutilizable
+ *  por el expediente (abogado/admin) y por el cliente. */
+function doc_store(int $cid, array $f, string $cat, int $conf, int $visible, ?int $uid): array {
+  if (($f['error']??UPLOAD_ERR_NO_FILE)!==UPLOAD_ERR_OK) return [false,'No se recibió el archivo.',0];
+  if ($f['size']>DOC_MAX) return [false,'El archivo supera 20 MB.',0];
   $ext=strtolower(pathinfo($f['name'],PATHINFO_EXTENSION));
-  if (!isset(DOC_ALLOWED[$ext])) post_redirect($base,'','Tipo de archivo no permitido.');
+  if (!isset(DOC_ALLOWED[$ext])) return [false,'Tipo de archivo no permitido.',0];
   $mime=(new finfo(FILEINFO_MIME_TYPE))->file($f['tmp_name']) ?: '';
-  if ($mime!==DOC_ALLOWED[$ext]) post_redirect($base,'','El contenido no coincide con la extensión.');
+  if ($mime!==DOC_ALLOWED[$ext]) return [false,'El contenido no coincide con la extensión.',0];
+  if (!in_array($cat,DOC_CATEGORIES,true)) $cat='otro';
   $stored=bin2hex(random_bytes(16)).'.'.$ext;
-  if (!move_uploaded_file($f['tmp_name'], uploads_dir().'/'.$stored)) post_redirect($base,'','No se pudo guardar.');
-  $cat=$_POST['category']??'otro'; if(!in_array($cat,DOC_CATEGORIES,true))$cat='otro';
-  $conf=isset($_POST['confidential'])?1:0;
-  document_add($cid, substr($f['name'],0,200), $stored, $cat, $mime, (int)$f['size'], $conf, $uid);
+  if (!move_uploaded_file($f['tmp_name'], uploads_dir().'/'.$stored)) return [false,'No se pudo guardar.',0];
+  $id=document_add($cid, substr($f['name'],0,200), $stored, $cat, $mime, (int)$f['size'], $conf, $visible, $uid);
+  return [true,'',$id];
+}
+
+function matter_upload(int $cid, string $base, ?int $uid): void {
+  $conf=isset($_POST['confidential'])?1:0; $vis=isset($_POST['visible_to_client'])?1:0;
+  [$ok,$msg,$id]=doc_store($cid, $_FILES['file']??[], $_POST['category']??'otro', $conf, $vis, $uid);
+  if (!$ok) post_redirect($base,'',$msg);
   audit("doc_upload:$cid"); post_redirect($base,'Documento subido.');
 }
 
@@ -127,13 +135,18 @@ function matter_sections(int $cid, string $base, string $csrf, array $abogados):
   </section>
 
   <section class="mcard"><h2>📎 Documentos del expediente</h2>
-    <p class="dim">Confidencial por secreto profesional (LFPDPPP). Almacenamiento fuera de la raíz pública; descarga con control de acceso.</p>
+    <p class="dim">Almacenamiento fuera de la raíz pública; descarga con control de acceso (LFPDPPP). Marca «Compartir con el cliente» para que lo pueda descargar desde su portal.</p>
     <form method="post" enctype="multipart/form-data" class="row-form"><?=$hid?><input type="hidden" name="m_action" value="doc_upload">
       <input type="file" name="file" required><?=sel(DOC_CATEGORIES,'otro','category')?>
-      <label class="chk"><input type="checkbox" name="confidential" checked> Confidencial</label><button>Subir</button></form>
-    <ul class="mlist"><?php foreach($docs as $d): ?>
-      <li><span>📄 <a href="/portal/download.php?doc=<?=$d['id']?>"><?=h($d['orig_name'])?></a> <span class="tag"><?=h($d['category'])?></span><?=$d['confidential']?' <span class="tag conf">confidencial</span>':''?> · <span class="dim"><?=round($d['size']/1024)?> KB · <?=h($d['uploader']?:'—')?></span></span>
-        <span class="acts"><form method="post" onsubmit="return confirm('¿Eliminar documento?')"><?=$hid?><input type="hidden" name="m_action" value="doc_del"><input type="hidden" name="docid" value="<?=$d['id']?>"><button class="mini danger">×</button></form></span></li>
+      <label class="chk"><input type="checkbox" name="visible_to_client"> Compartir con el cliente</label><button>Subir</button></form>
+    <ul class="mlist"><?php foreach($docs as $d): $fromClient=($d['uploader_role']??'')==='cliente'; ?>
+      <li><span>📄 <a href="/portal/download.php?doc=<?=$d['id']?>"><?=h($d['orig_name'])?></a> <span class="tag"><?=h($d['category'])?></span>
+        <?=$fromClient?' <span class="tag conf">del cliente</span>':''?><?=$d['visible_to_client']?' <span class="tag r-recibido">compartido</span>':''?>
+        · <span class="dim"><?=round($d['size']/1024)?> KB · <?=h($d['uploader']?:'—')?></span></span>
+        <span class="acts">
+          <?php if(!$fromClient): ?><form method="post"><?=$hid?><input type="hidden" name="m_action" value="doc_share"><input type="hidden" name="docid" value="<?=$d['id']?>"><button class="mini"><?=$d['visible_to_client']?'Ocultar':'Compartir'?></button></form><?php endif; ?>
+          <form method="post" onsubmit="return confirm('¿Eliminar documento?')"><?=$hid?><input type="hidden" name="m_action" value="doc_del"><input type="hidden" name="docid" value="<?=$d['id']?>"><button class="mini danger">×</button></form>
+        </span></li>
     <?php endforeach; if(!$docs) echo '<li class="soon">Sin documentos.</li>'; ?></ul>
   </section>
 

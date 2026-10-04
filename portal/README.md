@@ -40,11 +40,19 @@ Cada asunto (admin y abogado) es ahora un expediente completo, en `portal/lib/ma
 - **D. Cumplimiento/ético:** verificación de **conflicto de interés** (registro + chequeo,
   y aviso al crear asunto), **bitácora por asunto** visible, y acceso por asunto (403).
 
-### Documentos (endurecido, LFPDPPP + secreto profesional)
+### Documentos — intercambio bidireccional (endurecido, LFPDPPP + secreto profesional)
 Subida validada (whitelist de extensión + verificación `finfo` de contenido, límite 20 MB,
 nombre aleatorio), almacenada **fuera de la raíz pública** en `db/uploads/` (con
-`Require all denied`) y servida solo por `portal/download.php` con control de acceso por
-rol/asignación. `db/uploads/` está en `.gitignore` (nunca se versionan archivos de clientes).
+`Require all denied`) y servida solo por `portal/download.php` con control de acceso.
+`db/uploads/` está en `.gitignore` (nunca se versionan archivos de clientes).
+- **Abogado/admin → cliente:** al subir, casilla «Compartir con el cliente»; también se
+  puede compartir/ocultar después (`visible_to_client`). Solo lo compartido llega al cliente.
+- **Cliente → abogado:** el cliente sube documentos a SUS asuntos (verificado por propiedad),
+  ya sea respondiendo un **requerimiento** (lo marca «recibido» automáticamente) o en general;
+  el abogado los ve con la etiqueta «del cliente» y los descarga.
+- **Control de acceso:** el cliente solo descarga lo compartido con él o lo que él mismo subió
+  (el trabajo interno del despacho nunca es visible para el cliente). Lógica reutilizable en
+  `doc_store()` (`portal/lib/matter.php`).
 
 ## Seguridad
 Sesión HttpOnly+SameSite+Secure, `session_regenerate_id`, CSRF por formulario,
