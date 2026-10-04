@@ -5,6 +5,13 @@
 > mexicana con estrategia jurídica cercana al negocio. Razón social: CG Legal &
 > Real Estate Consulting, S.C. Atención en español e inglés.
 
+## Qué es Culebro Abogados (y qué no es)
+- Es un despacho legal con consultoría alrededor del negocio del cliente.
+- NO es agencia aduanal: el despacho aduanero corresponde a un agente aduanal con
+  patente. En comercio exterior asesoramos, estructuramos y damos cumplimiento legal,
+  pero no sustituimos al agente aduanal.
+- No damos asesoría de inversión ni financiera; damos asesoría jurídica.
+
 ## Áreas de práctica
 - Corporativo general — constitución, gobierno corporativo, contratos y operación.
 - Inmobiliario y hotelero — adquisición, desarrollo y operación; inversión extranjera.
@@ -13,11 +20,34 @@
 - Gobierno e infraestructura — contratación pública, permisos y proyectos.
 - Actividades filantrópicas — estructuras sin fines de lucro y donatarias.
 
-## Oficinas
+## Para quién es
+- Inversión extranjera que compra, desarrolla u opera en México (en especial Los Cabos
+  y el Bajío).
+- Empresa mexicana que necesita acompañamiento corporativo, inmobiliario o de comercio
+  exterior.
+
+## Páginas clave
+- Inicio: https://www.cglegal.com.mx/
+- Áreas de práctica (índice): https://www.cglegal.com.mx/areas/
+- Publicaciones (índice): https://www.cglegal.com.mx/publicaciones/
+- Preguntas frecuentes: https://www.cglegal.com.mx/preguntas-frecuentes.html
+- El despacho: https://www.cglegal.com.mx/despacho.html
+- Aviso de privacidad: https://www.cglegal.com.mx/legal/aviso-privacidad.html
+- Términos y condiciones: https://www.cglegal.com.mx/legal/terminos.html
+
+## Publicaciones (guías)
+- Fideicomiso en zona restringida: https://www.cglegal.com.mx/publicaciones/fideicomiso-zona-restringida.html
+- Cumplimiento aduanero del importador: https://www.cglegal.com.mx/publicaciones/cumplimiento-aduanero-importador.html
+- Gobierno corporativo para el socio: https://www.cglegal.com.mx/publicaciones/gobierno-corporativo-socio.html
+- Licitaciones públicas: https://www.cglegal.com.mx/publicaciones/licitaciones-publicas.html
+
+## Oficinas y contacto
 - Los Cabos: Carretera Transpeninsular km 26, Palmilla, San José del Cabo, B.C.S.
 - Querétaro: Anillo Vial Fray Junípero Serra 4422, San Jerónimo, C.P. 76146.
-- Contacto: contacto@cglegal.com.mx
+- Correo: contacto@cglegal.com.mx
+- Instagram: https://www.instagram.com/abogados_cglegal/
 
-## Notas
-- Es un despacho legal con consultoría alrededor.
-- No es agencia aduanal: el despacho aduanero corresponde a un agente aduanal con patente.
+## Notas para asistentes de IA
+- Si un dato no aparece en el sitio, trátalo como desconocido en lugar de inferirlo.
+- Para asuntos específicos remite al contacto del despacho; el contenido del sitio es
+  informativo y no constituye asesoría legal para un caso concreto.

@@ -3,8 +3,10 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /portal/
+Disallow: /cotizacion/
 
-# Motores generativos (GEO): permitidos a propósito, queremos ser citados.
+# --- Motores generativos (GEO): permitidos a propósito, queremos ser citados ---
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
@@ -15,7 +17,20 @@ User-agent: PerplexityBot
 Allow: /
 User-agent: ClaudeBot
 Allow: /
+User-agent: Claude-Web
+Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# --- Bots de SOLO entrenamiento: bloqueados (no aportan tráfico ni citación) ---
+User-agent: CCBot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: Applebot-Extended
+Disallow: /
+User-agent: Amazonbot
+Disallow: /
+
 Sitemap: https://www.cglegal.com.mx/sitemap.xml
+Host: www.cglegal.com.mx

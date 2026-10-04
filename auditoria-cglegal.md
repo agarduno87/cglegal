@@ -3,6 +3,17 @@
 Fecha: sep 2026 · Repo: agarduno87/cglegal · Alcance: SEO · GEO · Seguridad · Tests/Funcionalidad.
 Metodología igual a techStudio (Datara Hub) y Logistika.
 
+### Actualización oct 2026 — paridad SEO/GEO con Datara Hub y Logistika
+Se replicó el molde de los proyectos hermanos: **hub de áreas** y **hub de publicaciones**
+(`CollectionPage`/`ItemList`), **FAQ** con `FAQPage`, página **"El despacho"**
+(`AboutPage`+`Person`), home con JSON-LD en **`@graph`** (nodo de negocio `#despacho`
+reutilizable + `WebSite` + `FAQPage`), **breadcrumbs** en subpáginas, **`site.webmanifest`**
++ set de favicons (svg/apple/192/512), **`_headers`** (CSP para hosting estático),
+**IndexNow** (key file), placeholder de **Search Console**, `robots.txt` pro-IA ampliado
+(+ bloqueo de bots de entrenamiento), `llms.txt` enriquecido, carpeta **GoogleBusiness/**
+(NAP+checklist), **sitemap** a 27 URLs con `hreflang`+`lastmod`, y docs
+`plan-contenido-cglegal.md` + `SEO-GEO-SETUP.md`. Alta real en GSC/Bing/GBP: al migrar.
+
 ### Cambios aplicados en la 2ª pasada
 - Título de producción sin codename.
 - JSON-LD (`LegalService` + `Service`/`BreadcrumbList`) en home y áreas; `WebPage` en legales.

@@ -6,6 +6,24 @@ Es un despacho legal con consultoría, no al revés. Trabajo **para cliente**, p
 Repo: github.com/agarduno87/cglegal · Pages (staging visual): agarduno87.github.io/cglegal/
 Última actualización: sep 2026.
 
+## Cambios recientes (oct 2026) — paridad SEO/GEO con Datara Hub y Logistika
+- **Páginas nuevas (estructura pilar/cluster):** hub de áreas `/areas/` (+ `/en/areas/`),
+  hub de publicaciones `/publicaciones/`, FAQ `/preguntas-frecuentes.html` (+ EN) con
+  `FAQPage`, y "El despacho" `/despacho.html` (+ EN) con `AboutPage`+`Person`×2.
+- **JSON-LD avanzado:** home ahora en `@graph` con nodo de negocio `@id #despacho`
+  reutilizable + `WebSite` + `FAQPage`. Hubs con `CollectionPage`/`ItemList`, breadcrumbs
+  en todas las subpáginas.
+- **Infra GEO/consola:** `site.webmanifest`, `favicon.svg` + `apple-touch-icon` +
+  `icon-192/512` (sips), `_headers` (espejo CSP para hosting estático), key de **IndexNow**
+  (`9ef28b807e9569a0ae51194b41a124e2.txt`), placeholder de **Google Search Console**
+  (meta comentado), `robots.txt` pro-IA ampliado (+ bloqueo CCBot/Bytespider/
+  Applebot-Extended/Amazonbot), `llms.txt` enriquecido (páginas clave + notas para IA),
+  carpeta `GoogleBusiness/` con NAP y checklist.
+- **sitemap.xml:** 27 URLs con `lastmod`/`changefreq`/`priority` + alternates `hreflang`.
+- **Docs:** `plan-contenido-cglegal.md` (keywords/backlog) y `SEO-GEO-SETUP.md`
+  (alta GSC/Bing/IndexNow/GBP al migrar).
+- Footer de la home enlaza a las páginas nuevas (crawlable) con i18n `fl1..fl4`.
+
 ## Cambios recientes (sep 2026)
 - Textos: equipo "El despacho, en sus albores."; Publicaciones "Compromisos.".
 - Publicaciones: 4 tarjetas (agregada Gobierno e infraestructura) que enlazan a
@@ -38,10 +56,16 @@ Producción real = GoDaddy.
 ## Estructura
 ```
 index.html            Home (Monograma). Home de producción = index.html
-areas/                6 páginas de área de práctica
-publicaciones/        4 artículos (contenido de EJEMPLO, pendiente de redacción)
+despacho.html         "El despacho" (About, AboutPage+Person) + espejo en/
+preguntas-frecuentes.html  FAQ (FAQPage) + espejo en/
+areas/                index.html (hub) + 6 páginas de área de práctica
+publicaciones/        index.html (hub) + 4 artículos (EJEMPLO, pendiente de redacción)
 legal/                aviso-privacidad.html + terminos.html (BORRADORES, validar abogado)
-en/                   Espejo en inglés (index + areas) para hreflang
+en/                   Espejo en inglés (index, areas+hub, despacho, FAQ) para hreflang
+site.webmanifest _headers   PWA manifest + cabeceras para hosting estático
+<key>.txt             Key de IndexNow (raíz)
+GoogleBusiness/       NAP + checklist para Google Business Profile
+plan-contenido-cglegal.md  SEO-GEO-SETUP.md   Plan de contenido + alta en consolas
 assets/               styles.css, app.js, areas.css, fonts.css + fonts/ (Fraunces,Inter),
                       areas/*.jpg (placeholders), icono-*.png, javier.jpg, alejandro.jpg,
                       og.png (1200x630), BrochureCA.pdf (13MB, archivo VIEJO pendiente)
