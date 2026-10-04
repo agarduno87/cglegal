@@ -6,6 +6,18 @@ Es un despacho legal con consultoría, no al revés. Trabajo **para cliente**, p
 Repo: github.com/agarduno87/cglegal · Pages (staging visual): agarduno87.github.io/cglegal/
 Última actualización: sep 2026.
 
+## Generador de HTML (build local) — `tools/`
+Las **familias repetitivas** se generan con Python (como Datara Hub/Logistika):
+`python3 tools/build.py` → 6 áreas ES + 6 EN + hubs (áreas ES/EN, publicaciones ES) +
+`sitemap.xml`, desde `tools/data/*.json`. `python3 tools/build_static.py` → empaqueta
+`dist/` + `cglegal-public.zip` por whitelist (audit anti-fugas) para subir a GoDaddy.
+- **Python corre SOLO en local (build), NUNCA en GoDaddy** (eso es runtime: PHP). Matiza
+  la regla de hosting de abajo: "no Python en el host"; sí como herramienta de build.
+- **Editar datos/plantillas en `tools/`, no el HTML generado** de áreas/hubs.
+- NO se generan (contenido editorial, a mano): home, legales, artículos de
+  publicaciones, FAQ y despacho. Ver `tools/README.md`.
+- `dist/`, `cglegal-public.zip`, `__pycache__/` están en `.gitignore`.
+
 ## Cambios recientes (oct 2026) — paridad SEO/GEO con Datara Hub y Logistika
 - **Páginas nuevas (estructura pilar/cluster):** hub de áreas `/areas/` (+ `/en/areas/`),
   hub de publicaciones `/publicaciones/`, FAQ `/preguntas-frecuentes.html` (+ EN) con

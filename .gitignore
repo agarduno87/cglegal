@@ -14,4 +14,8 @@ db/*.db
 /tmp/
 # Fase 2 (portal)
 portal/lib/config.php
-db/*.sqlite
+# Build local (no versionar la salida del generador)
+dist/
+cglegal-public.zip
+__pycache__/
+*.pyc

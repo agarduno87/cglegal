@@ -1,0 +1,290 @@
+{
+ "corporativo-general": {
+  "es": {
+   "title": "Corporativo general — Culebro Abogados",
+   "desc": "Corporativo general en Culebro Abogados. Constitución, gobierno corporativo, contratos y la operación jurídica del día a día de tu empresa.",
+   "ogdesc": "Constitución, gobierno corporativo, contratos y operación diaria de la empresa.",
+   "eyebrow": "Área de práctica — 01",
+   "h1": "Corporativo general",
+   "lead": "Constitución, gobierno corporativo, contratos y la operación jurídica del día a día de tu empresa.",
+   "cover_alt": "Corporativo general",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Constitución de sociedades y estructura corporativa",
+    "Asambleas, actas y libros corporativos",
+    "Contratos mercantiles y civiles",
+    "Gobierno corporativo y cumplimiento",
+    "Acompañamiento legal recurrente (in-house externo)"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de corporativo general?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "General corporate — Culebro Abogados",
+   "desc": "General corporate at Culebro Abogados. Incorporation, corporate governance, contracts and the day-to-day legal operation of your company.",
+   "ogdesc": "Incorporation, corporate governance, contracts and the day-to-day legal operation of your company.",
+   "eyebrow": "Practice area — 01",
+   "h1": "General corporate",
+   "lead": "Incorporation, corporate governance, contracts and the day-to-day legal operation of your company.",
+   "cover_alt": "General corporate",
+   "inc_h": "What's included?",
+   "inc": [
+    "Company incorporation and corporate structure",
+    "Shareholder meetings, minutes and corporate books",
+    "Commercial and civil contracts",
+    "Corporate governance and compliance",
+    "Ongoing legal support (external in-house)"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a general corporate matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ },
+ "inmobiliario-hotelero": {
+  "es": {
+   "title": "Inmobiliario y hotelero — Culebro Abogados",
+   "desc": "Inmobiliario y hotelero en Culebro Abogados. Adquisición, desarrollo y operación de inmuebles y hotelería, con foco en inversión extranjera.",
+   "ogdesc": "Adquisición, desarrollo y operación de inmuebles y hotelería, con foco en inversión extranjera.",
+   "eyebrow": "Área de práctica — 02",
+   "h1": "Inmobiliario y hotelero",
+   "lead": "Adquisición, desarrollo y operación de inmuebles y hotelería, con foco en inversión extranjera.",
+   "cover_alt": "Inmobiliario y hotelero",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Compraventa y due diligence inmobiliario",
+    "Fideicomisos en zona restringida",
+    "Desarrollo y proyectos hoteleros",
+    "Arrendamientos y operación",
+    "Permisos y uso de suelo"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de inmobiliario y hotelero?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "Real estate & hospitality — Culebro Abogados",
+   "desc": "Real estate & hospitality at Culebro Abogados. Acquisition, development and operation of real estate and hospitality, with a foreign-investment focus.",
+   "ogdesc": "Acquisition, development and operation of real estate and hospitality, with a foreign-investment focus.",
+   "eyebrow": "Practice area — 02",
+   "h1": "Real estate & hospitality",
+   "lead": "Acquisition, development and operation of real estate and hospitality, with a foreign-investment focus.",
+   "cover_alt": "Real estate & hospitality",
+   "inc_h": "What's included?",
+   "inc": [
+    "Purchase and real-estate due diligence",
+    "Trusts in the restricted zone",
+    "Development and hospitality projects",
+    "Leasing and operation",
+    "Permits and land use"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a real estate & hospitality matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ },
+ "auditoria-legal": {
+  "es": {
+   "title": "Auditoría legal (due diligence) — Culebro Abogados",
+   "desc": "Auditoría legal (due diligence) en Culebro Abogados. Revisión legal integral previa a comprar, invertir o aliarte.",
+   "ogdesc": "Revisión legal integral previa a compras, inversiones y alianzas.",
+   "eyebrow": "Área de práctica — 03",
+   "h1": "Auditoría legal (due diligence)",
+   "lead": "Revisión legal integral previa a comprar, invertir o aliarte.",
+   "cover_alt": "Auditoría legal (due diligence)",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Due diligence legal y regulatorio",
+    "Revisión de contratos y contingencias",
+    "Situación laboral, fiscal y corporativa",
+    "Informe de hallazgos y riesgos",
+    "Recomendaciones para el cierre"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de auditoría legal (due diligence)?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "Legal audit (due diligence) — Culebro Abogados",
+   "desc": "Legal audit (due diligence) at Culebro Abogados. A full legal review before you buy, invest or partner.",
+   "ogdesc": "A full legal review before you buy, invest or partner.",
+   "eyebrow": "Practice area — 03",
+   "h1": "Legal audit (due diligence)",
+   "lead": "A full legal review before you buy, invest or partner.",
+   "cover_alt": "Legal audit (due diligence)",
+   "inc_h": "What's included?",
+   "inc": [
+    "Legal and regulatory due diligence",
+    "Contract and contingency review",
+    "Labor, tax and corporate status",
+    "Findings and risk report",
+    "Recommendations for closing"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a legal audit (due diligence) matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ },
+ "comercio-exterior": {
+  "es": {
+   "title": "Comercio Exterior — Culebro Abogados",
+   "desc": "Comercio Exterior en Culebro Abogados. Importación, exportación y cumplimiento en operaciones internacionales.",
+   "ogdesc": "Importación, exportación y cumplimiento en operaciones internacionales.",
+   "eyebrow": "Área de práctica — 04",
+   "h1": "Comercio Exterior",
+   "lead": "Importación, exportación y cumplimiento en operaciones internacionales.",
+   "cover_alt": "Comercio Exterior",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Clasificación arancelaria y cumplimiento",
+    "Regímenes aduaneros y programas (IMMEX)",
+    "Contratos internacionales e Incoterms",
+    "Origen y tratados comerciales",
+    "Atención de requerimientos y auditorías"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de comercio exterior?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "Foreign Trade — Culebro Abogados",
+   "desc": "Foreign Trade at Culebro Abogados. Import, export and compliance in international operations.",
+   "ogdesc": "Import, export and compliance in international operations.",
+   "eyebrow": "Practice area — 04",
+   "h1": "Foreign Trade",
+   "lead": "Import, export and compliance in international operations.",
+   "cover_alt": "Foreign Trade",
+   "inc_h": "What's included?",
+   "inc": [
+    "Tariff classification and compliance",
+    "Customs regimes and programs (IMMEX)",
+    "International contracts and Incoterms",
+    "Origin and trade agreements",
+    "Handling of requirements and audits"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a foreign trade matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ },
+ "gobierno-infraestructura": {
+  "es": {
+   "title": "Gobierno e infraestructura — Culebro Abogados",
+   "desc": "Gobierno e infraestructura en Culebro Abogados. Contratación pública, permisos y proyectos de infraestructura.",
+   "ogdesc": "Contratación pública, permisos y proyectos de infraestructura.",
+   "eyebrow": "Área de práctica — 05",
+   "h1": "Gobierno e infraestructura",
+   "lead": "Contratación pública, permisos y proyectos de infraestructura.",
+   "cover_alt": "Gobierno e infraestructura",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Licitaciones y contratación pública",
+    "Permisos, concesiones y autorizaciones",
+    "Proyectos de infraestructura y APP",
+    "Relación con autoridades",
+    "Cumplimiento normativo"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de gobierno e infraestructura?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "Government & infrastructure — Culebro Abogados",
+   "desc": "Government & infrastructure at Culebro Abogados. Public procurement, permits and infrastructure projects.",
+   "ogdesc": "Public procurement, permits and infrastructure projects.",
+   "eyebrow": "Practice area — 05",
+   "h1": "Government & infrastructure",
+   "lead": "Public procurement, permits and infrastructure projects.",
+   "cover_alt": "Government & infrastructure",
+   "inc_h": "What's included?",
+   "inc": [
+    "Public tenders and procurement",
+    "Permits, concessions and authorizations",
+    "Infrastructure and PPP projects",
+    "Relations with authorities",
+    "Regulatory compliance"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a government & infrastructure matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ },
+ "actividades-filantropicas": {
+  "es": {
+   "title": "Actividades filantrópicas — Culebro Abogados",
+   "desc": "Actividades filantrópicas en Culebro Abogados. Estructuras sin fines de lucro, donatarias y responsabilidad social.",
+   "ogdesc": "Estructuras sin fines de lucro, donatarias y responsabilidad social.",
+   "eyebrow": "Área de práctica — 06",
+   "h1": "Actividades filantrópicas",
+   "lead": "Estructuras sin fines de lucro, donatarias y responsabilidad social.",
+   "cover_alt": "Actividades filantrópicas",
+   "inc_h": "¿Qué incluye?",
+   "inc": [
+    "Constitución de A.C. e I.A.P.",
+    "Autorización como donataria",
+    "Cumplimiento y transparencia",
+    "Gobernanza de fundaciones",
+    "Estructuras de impacto social"
+   ],
+   "aside_h": "Cómo trabajamos",
+   "aside_p": "Un solo responsable de tu asunto, con acompañamiento cercano en Los Cabos y Querétaro. Entendemos primero el negocio y luego el problema legal, para que la estrategia jurídica empuje la operación.",
+   "cta_h": "¿Tienes un asunto de actividades filantrópicas?",
+   "cta_btn": "Solicitar información →",
+   "back": "← Áreas de práctica",
+   "foot_home": "Inicio"
+  },
+  "en": {
+   "title": "Philanthropic activities — Culebro Abogados",
+   "desc": "Philanthropic activities at Culebro Abogados. Non-profit structures, authorized donees and social responsibility.",
+   "ogdesc": "Non-profit structures, authorized donees and social responsibility.",
+   "eyebrow": "Practice area — 06",
+   "h1": "Philanthropic activities",
+   "lead": "Non-profit structures, authorized donees and social responsibility.",
+   "cover_alt": "Philanthropic activities",
+   "inc_h": "What's included?",
+   "inc": [
+    "Incorporation of civil associations (A.C./I.A.P.)",
+    "Authorized donee status",
+    "Compliance and transparency",
+    "Foundation governance",
+    "Social-impact structures"
+   ],
+   "aside_h": "How we work",
+   "aside_p": "One person accountable for your matter, with close support in Los Cabos and Querétaro. We understand the business first and the legal problem second, so the legal strategy drives the deal.",
+   "cta_h": "Do you have a philanthropic activities matter?",
+   "cta_btn": "Request information →",
+   "back": "← Practice areas",
+   "foot_home": "Home"
+  }
+ }
+}

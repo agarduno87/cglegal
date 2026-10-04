@@ -1,0 +1,25 @@
+{
+  "order": ["fideicomiso-zona-restringida", "cumplimiento-aduanero-importador", "gobierno-corporativo-socio", "licitaciones-publicas"],
+  "items": {
+    "fideicomiso-zona-restringida": {
+      "kicker": "Inmobiliario",
+      "title": "Comprar en zona restringida: el fideicomiso, sin mitos",
+      "card": "Qué es, para qué sirve y cómo se estructura el fideicomiso para la inversión extranjera en costa y frontera."
+    },
+    "cumplimiento-aduanero-importador": {
+      "kicker": "Comercio exterior",
+      "title": "Cumplimiento aduanero para el nuevo importador",
+      "card": "Obligaciones básicas, riesgos frecuentes y la frontera con el agente aduanal."
+    },
+    "gobierno-corporativo-socio": {
+      "kicker": "Corporativo",
+      "title": "Gobierno corporativo que sí protege al socio",
+      "card": "Acuerdos, órganos y controles que evitan conflictos y cuidan tu participación."
+    },
+    "licitaciones-publicas": {
+      "kicker": "Gobierno",
+      "title": "Licitaciones públicas sin sorpresas",
+      "card": "Cómo prepararte para participar y competir en contratación pública con reglas claras."
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "base": "https://www.cglegal.com.mx",
+  "brand": "Culebro",
+  "brand_full": "Culebro Abogados",
+  "legal_name": "CG Legal & Real Estate Consulting, S.C.",
+  "wa_number": "529612155515",
+  "area_served": ["Los Cabos", "Querétaro", "México"],
+  "foot_copy": "© 2026 Culebro Abogados · CG Legal &amp; Real Estate Consulting, S.C.",
+  "og_image": "https://www.cglegal.com.mx/assets/og.png",
+  "theme_color": "#7C2E3B",
+  "areas_order": ["corporativo-general", "inmobiliario-hotelero", "auditoria-legal", "comercio-exterior", "gobierno-infraestructura", "actividades-filantropicas"],
+  "areas_short": {
+    "es": {
+      "corporativo-general": "Constitución, gobierno corporativo, contratos y la operación jurídica del día a día.",
+      "inmobiliario-hotelero": "Adquisición, desarrollo y operación inmobiliaria y hotelera; inversión extranjera.",
+      "auditoria-legal": "Revisión legal integral antes de comprar, invertir o asociarte.",
+      "comercio-exterior": "Importación, exportación y cumplimiento internacional; estrategia y riesgo.",
+      "gobierno-infraestructura": "Contratación pública, permisos, concesiones y proyectos de infraestructura.",
+      "actividades-filantropicas": "Estructuras sin fines de lucro, donatarias y responsabilidad social."
+    },
+    "en": {
+      "corporativo-general": "Incorporation, corporate governance, contracts and day-to-day legal operations.",
+      "inmobiliario-hotelero": "Acquisition, development and operation; foreign investment.",
+      "auditoria-legal": "Full legal review before buying, investing or partnering.",
+      "comercio-exterior": "Import, export and international compliance; strategy and risk.",
+      "gobierno-infraestructura": "Public procurement, permits, concessions and infrastructure projects.",
+      "actividades-filantropicas": "Non-profit structures, authorized donees and social responsibility."
+    }
+  },
+  "areas_name": {
+    "es": {
+      "corporativo-general": "Corporativo general",
+      "inmobiliario-hotelero": "Inmobiliario y hotelero",
+      "auditoria-legal": "Auditoría legal (due diligence)",
+      "comercio-exterior": "Comercio Exterior",
+      "gobierno-infraestructura": "Gobierno e infraestructura",
+      "actividades-filantropicas": "Actividades filantrópicas"
+    },
+    "en": {
+      "corporativo-general": "General corporate",
+      "inmobiliario-hotelero": "Real estate & hospitality",
+      "auditoria-legal": "Legal audit (due diligence)",
+      "comercio-exterior": "Foreign trade",
+      "gobierno-infraestructura": "Government & infrastructure",
+      "actividades-filantropicas": "Philanthropic work"
+    }
+  }
+}
