@@ -2,14 +2,25 @@
 Portal privado con login y roles **admin / abogado / cliente**, en `/portal/`.
 
 ## Correr en local (SQLite, cero config)
+Forma recomendada (elige puerto libre solo, host fijo, imprime la URL):
 ```
-php dev-seed.php        # crea usuarios de prueba (desde /portal)
-cd .. && php -S localhost:8000
+bash portal/serve.sh            # desde la raíz del repo (culebroabogados/)
+bash portal/serve.sh 8080       # intenta 8080; si está ocupado toma otro al azar
 ```
-Abrir http://localhost:8000/portal/login.php
+La primera vez, siembra los usuarios de prueba:
+```
+php portal/dev-seed.php
+```
+Abrir la URL que imprime `serve.sh`, p. ej. http://127.0.0.1:22245/portal/login.php
 - admin@cglegal.com.mx / admin123
 - abogado@cglegal.com.mx / abogado123
 - cliente@cglegal.com.mx / cliente123
+
+> **Usa un solo host.** `localhost` y `127.0.0.1` son orígenes DISTINTOS para las
+> cookies: si inicias sesión en uno y abres el otro, la sesión no viaja y parece que
+> "no deja entrar". `serve.sh` fija `127.0.0.1` para evitarlo.
+
+Forma manual equivalente: `cd` a `culebroabogados/` y `php -S 127.0.0.1:<puerto>`.
 
 ## Producción (GoDaddy / MySQL)
 1. Importar `db/schema.mysql.sql`.
