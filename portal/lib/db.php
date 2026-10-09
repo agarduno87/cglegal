@@ -1,4 +1,19 @@
 <?php
+// --- Endurecimiento de errores (prod no muestra trazas; dev sí con APP_DEBUG=1) ---
+(function () {
+  $debug = getenv('APP_DEBUG') === '1';
+  @ini_set('display_errors', $debug ? '1' : '0');
+  @ini_set('log_errors', '1');
+  error_reporting(E_ALL);
+  if (!$debug) {
+    set_exception_handler(function ($e) {
+      error_log('[portal] ' . $e);
+      if (!headers_sent()) http_response_code(500);
+      echo 'Ocurrió un error. Intenta de nuevo más tarde.';
+    });
+  }
+})();
+
 function db(): PDO {
   static $pdo = null; if ($pdo) return $pdo;
   $f = __DIR__ . '/config.php';
@@ -22,6 +37,7 @@ function db(): PDO {
     $pdo->exec("CREATE TABLE IF NOT EXISTS requests(id INTEGER PRIMARY KEY AUTOINCREMENT,case_id INTEGER NOT NULL,item TEXT NOT NULL,status TEXT NOT NULL DEFAULT 'pedido',created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS time_entries(id INTEGER PRIMARY KEY AUTOINCREMENT,case_id INTEGER NOT NULL,user_id INTEGER,work_date TEXT,minutes INTEGER NOT NULL DEFAULT 0,rate REAL NOT NULL DEFAULT 0,billable INTEGER NOT NULL DEFAULT 1,invoiced INTEGER NOT NULL DEFAULT 0,note TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS conflicts(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,note TEXT,created_by INTEGER,created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS login_attempts(id INTEGER PRIMARY KEY AUTOINCREMENT,ip TEXT,email TEXT,at TEXT DEFAULT CURRENT_TIMESTAMP)");
     // columnas nuevas en cases (migración idempotente para dev)
     $cols = [];
     foreach ($pdo->query("PRAGMA table_info(cases)") as $r) $cols[] = $r['name'];

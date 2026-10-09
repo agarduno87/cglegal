@@ -12,6 +12,27 @@ function current_user(): ?array { boot_session(); return $_SESSION['user'] ?? nu
 function require_login(): void { if (!current_user()) { header('Location: /portal/login.php'); exit; } }
 function require_role(string $role): void { require_login(); if ((current_user()['role'] ?? '') !== $role) { http_response_code(403); echo 'Acceso denegado.'; exit; } }
 function audit(string $action): void { try { $u=current_user(); $st=db()->prepare("INSERT INTO audit_log(user_id,action,ip) VALUES(?,?,?)"); $st->execute([$u['id']??null,$action,$_SERVER['REMOTE_ADDR']??'']); } catch (Throwable $e) {} }
+/* ---- Bloqueo por intentos de login (anti fuerza bruta) ---- */
+const LOGIN_MAX_EMAIL = 5;   // fallos por cuenta en la ventana
+const LOGIN_MAX_IP    = 12;  // fallos por IP en la ventana
+function _login_window(): string { // ventana de 15 min, según el motor (usa el reloj de la BD)
+  return db()->getAttribute(PDO::ATTR_DRIVER_NAME)==='sqlite'
+    ? "datetime('now','-15 minutes')" : "(NOW() - INTERVAL 15 MINUTE)";
+}
+function login_throttled(string $email, string $ip): bool {
+  $w=_login_window();
+  $a=db()->prepare("SELECT COUNT(*) FROM login_attempts WHERE email=? AND at>=$w"); $a->execute([$email]);
+  $b=db()->prepare("SELECT COUNT(*) FROM login_attempts WHERE ip=? AND at>=$w"); $b->execute([$ip]);
+  return ((int)$a->fetchColumn())>=LOGIN_MAX_EMAIL || ((int)$b->fetchColumn())>=LOGIN_MAX_IP;
+}
+function login_record_fail(string $email, string $ip): void {
+  try { db()->prepare("INSERT INTO login_attempts(ip,email) VALUES(?,?)")->execute([$ip,$email]); } catch (Throwable $e) {}
+}
+function login_clear(string $email, string $ip): void {
+  // limpia por cuenta (no por IP) para no permitir resetear el contador anti-spray
+  try { db()->prepare("DELETE FROM login_attempts WHERE email=?")->execute([$email]); } catch (Throwable $e) {}
+}
+
 function attempt_login(string $email, string $pass): bool {
   $st=db()->prepare("SELECT * FROM users WHERE email=?"); $st->execute([$email]); $u=$st->fetch(PDO::FETCH_ASSOC);
   if ($u && password_verify($pass, $u['password_hash'])) {

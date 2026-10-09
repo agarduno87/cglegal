@@ -38,4 +38,5 @@ echo "  admin@cglegal.com.mx / admin123  (abogado / cliente = rol+123)"
 echo "  Ctrl+C para detener."
 echo "──────────────────────────────────────────────"
 cd "$ROOT"
+export APP_DEBUG=1   # solo local: muestra errores en pantalla (en prod queda apagado)
 exec php -S "$HOST:$PORT"

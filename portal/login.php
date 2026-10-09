@@ -2,9 +2,11 @@
 if (current_user()) { header('Location: '.role_home(current_user()['role'])); exit; }
 $err='';
 if (($_SERVER['REQUEST_METHOD']??'')==='POST') {
+  $ip=$_SERVER['REMOTE_ADDR']??''; $email=trim($_POST['email']??'');
   if (!csrf_check($_POST['csrf']??'')) $err='Sesión expirada, vuelve a intentar.';
-  elseif (attempt_login(trim($_POST['email']??''), $_POST['password']??'')) { header('Location: '.role_home(current_user()['role'])); exit; }
-  else $err='Credenciales incorrectas.';
+  elseif (login_throttled($email,$ip)) { audit('login_blocked:'.$email); $err='Demasiados intentos fallidos. Espera unos minutos e inténtalo de nuevo.'; }
+  elseif (attempt_login($email, $_POST['password']??'')) { login_clear($email,$ip); header('Location: '.role_home(current_user()['role'])); exit; }
+  else { login_record_fail($email,$ip); $err='Credenciales incorrectas.'; }
 }
 $t=csrf_token(); ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8">
