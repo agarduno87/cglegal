@@ -1,0 +1,18 @@
+# GitHub Pages (Jekyll) — SOLO staging visual.
+# Excluye del sitio publicado lo que no debe servirse (código PHP, docs internos,
+# herramientas y activos que no son del sitio). Producción real = GoDaddy.
+exclude:
+  - contact.php
+  - .htaccess
+  - _headers
+  - tools
+  - db
+  - GoogleBusiness
+  - CLAUDE.md
+  - CONTEXTO-PROYECTO.md
+  - auditoria-cglegal.md
+  - plan-contenido-cglegal.md
+  - SEO-GEO-SETUP.md
+  - CONTENIDO.md
+  - PUBLICAR-PAGES.md
+  - README.md
