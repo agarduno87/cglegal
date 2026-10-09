@@ -6,8 +6,12 @@ CREATE TABLE IF NOT EXISTS users (
   password_hash VARCHAR(255) NOT NULL,
   role ENUM('admin','abogado','cliente') NOT NULL DEFAULT 'cliente',
   active TINYINT NOT NULL DEFAULT 1,
+  twofa TINYINT NOT NULL DEFAULT 0,
+  totp_secret VARCHAR(64) NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Si la tabla users ya existía:
+-- ALTER TABLE users ADD COLUMN twofa TINYINT NOT NULL DEFAULT 0, ADD COLUMN totp_secret VARCHAR(64) NULL;
 
 CREATE TABLE IF NOT EXISTS audit_log (
   id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NULL,

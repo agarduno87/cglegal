@@ -28,6 +28,9 @@ if (($_SERVER['REQUEST_METHOD']??'')==='POST') {
       $p=$_POST['password']??''; if (strlen($p)<8) post_redirect('/portal/admin/usuarios.php','','La contraseña debe tener 8+ caracteres.');
       user_reset_pw($id,$p); audit('user_resetpw:'.$id); post_redirect('/portal/admin/usuarios.php','Contraseña restablecida.');
     }
+    if ($a==='twofa_off') {
+      user_disable_2fa($id); audit('user_2fa_off:'.$id); post_redirect('/portal/admin/usuarios.php','2FA desactivado para el usuario.');
+    }
     if ($a==='delete') {
       if ($id===$self['id']) post_redirect('/portal/admin/usuarios.php','','No puedes eliminarte a ti mismo.');
       if ($target['role']==='admin' && admins_active_count($id)===0) post_redirect('/portal/admin/usuarios.php','','No puedes eliminar al último administrador.');
@@ -47,7 +50,7 @@ $t=csrf_token(); $users=users_all(); shell_top('Usuarios'); ?>
   <select name="role"><option value="cliente">cliente</option><option value="abogado">abogado</option><option value="admin">admin</option></select>
   <button>Crear</button>
 </form></details>
-<table class="tbl"><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Activo</th><th>Acciones</th></tr></thead><tbody>
+<table class="tbl"><thead><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th>Activo</th><th>2FA</th><th>Acciones</th></tr></thead><tbody>
 <?php foreach($users as $u): ?>
 <tr>
   <form method="post"><input type="hidden" name="csrf" value="<?=h($t)?>"><input type="hidden" name="action" value="update"><input type="hidden" name="id" value="<?=$u['id']?>">
@@ -55,7 +58,9 @@ $t=csrf_token(); $users=users_all(); shell_top('Usuarios'); ?>
   <td><?=h($u['email'])?></td>
   <td><select name="role"><?php foreach(ROLES as $r) echo '<option'.($u['role']===$r?' selected':'').'>'.$r.'</option>'; ?></select></td>
   <td style="text-align:center"><input type="checkbox" name="active" <?=$u['active']?'checked':''?>></td>
+  <td style="text-align:center"><?=!empty($u['twofa'])?'<span class="tag r-recibido">on</span>':'<span class="dim">off</span>'?></td>
   <td class="acts"><button title="Guardar">Guardar</button></form>
+    <?php if(!empty($u['twofa'])): ?><form method="post" onsubmit="return confirm('¿Quitar el 2FA de <?=h($u['email'])?>? (úsalo si perdió su dispositivo)')"><input type="hidden" name="csrf" value="<?=h($t)?>"><input type="hidden" name="action" value="twofa_off"><input type="hidden" name="id" value="<?=$u['id']?>"><button class="mini">Quitar 2FA</button></form><?php endif; ?>
     <form method="post" onsubmit="return confirm('¿Eliminar a <?=h($u['email'])?>?')"><input type="hidden" name="csrf" value="<?=h($t)?>"><input type="hidden" name="action" value="delete"><input type="hidden" name="id" value="<?=$u['id']?>"><button class="danger">Eliminar</button></form>
     <form method="post" onsubmit="var p=prompt('Nueva contraseña (8+):');if(!p)return false;this.password.value=p;return true"><input type="hidden" name="csrf" value="<?=h($t)?>"><input type="hidden" name="action" value="resetpw"><input type="hidden" name="id" value="<?=$u['id']?>"><input type="hidden" name="password"><button>Reset pass</button></form>
   </td>

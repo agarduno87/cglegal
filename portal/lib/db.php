@@ -22,7 +22,7 @@ function db(): PDO {
     $pdo = new PDO('sqlite:' . $cfg['sqlite_path']);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("PRAGMA foreign_keys=ON");
-    $pdo->exec("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,password_hash TEXT NOT NULL,role TEXT NOT NULL DEFAULT 'cliente',active INTEGER NOT NULL DEFAULT 1,created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,password_hash TEXT NOT NULL,role TEXT NOT NULL DEFAULT 'cliente',active INTEGER NOT NULL DEFAULT 1,twofa INTEGER NOT NULL DEFAULT 0,totp_secret TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS audit_log(id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER,action TEXT,ip TEXT,at TEXT DEFAULT CURRENT_TIMESTAMP)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS leads(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,email TEXT,phone TEXT,message TEXT,created_at TEXT DEFAULT CURRENT_TIMESTAMP)");
     $pdo->exec("CREATE TABLE IF NOT EXISTS cases(id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,area TEXT,client_id INTEGER,lawyer_id INTEGER,status TEXT NOT NULL DEFAULT 'nuevo',created_at TEXT DEFAULT CURRENT_TIMESTAMP,updated_at TEXT)");
@@ -52,6 +52,10 @@ function db(): PDO {
     // columna nueva en documents (visibilidad para el cliente)
     $dcols = []; foreach ($pdo->query("PRAGMA table_info(documents)") as $r) $dcols[] = $r['name'];
     if (!in_array('visible_to_client', $dcols, true)) $pdo->exec("ALTER TABLE documents ADD COLUMN visible_to_client INTEGER NOT NULL DEFAULT 0");
+    // columnas nuevas en users (2FA)
+    $ucols = []; foreach ($pdo->query("PRAGMA table_info(users)") as $r) $ucols[] = $r['name'];
+    if (!in_array('twofa', $ucols, true)) $pdo->exec("ALTER TABLE users ADD COLUMN twofa INTEGER NOT NULL DEFAULT 0");
+    if (!in_array('totp_secret', $ucols, true)) $pdo->exec("ALTER TABLE users ADD COLUMN totp_secret TEXT");
   } else {
     $m = $cfg['mysql'];
     $pdo = new PDO("mysql:host={$m['host']};dbname={$m['name']};charset=utf8mb4", $m['user'], $m['pass']);

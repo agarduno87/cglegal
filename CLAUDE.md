@@ -149,12 +149,19 @@ prepared statements, escape con `h()`.
   propios asuntos (contra un requerimiento → lo marca «recibido», o en general). El cliente
   solo descarga lo compartido o lo que él subió (trabajo interno nunca visible). Helper
   reutilizable `doc_store()` en `portal/lib/matter.php`.
-- **Correr local**: `cd portal && php dev-seed.php` → `cd .. && php -S localhost:8000`
-  → `/portal/login.php`. Usuarios prueba: admin@/abogado@/cliente@cglegal.com.mx
-  (pass = rol+123).
-- **Pendiente Fase 2**: bloqueo por intentos de login y migración/staging en GoDaddy
-  (MySQL; `db/schema.mysql.sql` ya trae todas las tablas del expediente). La subida de
-  documentos endurecida (LFPDPPP) YA quedó hecha.
+- **2FA (TOTP)**: opcional por usuario en `/portal/2fa.php` (apps Google Authenticator/
+  Authy/1Password; `portal/lib/totp.php`, PHP puro, sin servicios externos). Login en 2
+  pasos cuando está activo; admin puede quitarlo a un usuario (dispositivo perdido) desde
+  Usuarios. Columnas `users.twofa` + `users.totp_secret`.
+- **Anti fuerza bruta**: tabla `login_attempts` + bloqueo por cuenta (5) y por IP (12) en
+  ventana de 15 min; evento `login_blocked` en bitácora.
+- **Errores en prod**: `display_errors` OFF por defecto (ON solo con `APP_DEBUG=1`, que pone
+  `serve.sh` en local); `set_exception_handler` genérico (sin trazas).
+- **Correr local**: `php portal/dev-seed.php` (1ª vez) → `bash portal/serve.sh` (puerto
+  libre + host fijo 127.0.0.1). Usuarios prueba: admin@/abogado@/cliente@cglegal.com.mx
+  (pass = rol+123). **Un solo host** (127.0.0.1, no localhost) por las cookies.
+- **Pendiente Fase 2**: migración/staging en GoDaddy (MySQL; `db/schema.mysql.sql` ya trae
+  TODAS las tablas, incl. 2FA y login_attempts). Todo lo demás de seguridad YA está.
 
 ## Correr y desplegar
 - Local (con PHP, prueba el form): `php -S localhost:8000` en la raíz → abrir `/`.

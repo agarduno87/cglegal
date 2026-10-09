@@ -33,15 +33,17 @@ function login_clear(string $email, string $ip): void {
   try { db()->prepare("DELETE FROM login_attempts WHERE email=?")->execute([$email]); } catch (Throwable $e) {}
 }
 
-function attempt_login(string $email, string $pass): bool {
+function verify_credentials(string $email, string $pass): ?array {
   $st=db()->prepare("SELECT * FROM users WHERE email=?"); $st->execute([$email]); $u=$st->fetch(PDO::FETCH_ASSOC);
-  if ($u && password_verify($pass, $u['password_hash'])) {
-    boot_session(); session_regenerate_id(true);
-    $_SESSION['user']=['id'=>$u['id'],'name'=>$u['name'],'email'=>$u['email'],'role'=>$u['role']];
-    audit('login'); return true;
-  }
-  return false;
+  if ($u && (int)$u['active']===1 && password_verify($pass, $u['password_hash'])) return $u;
+  return null;
 }
+function complete_login(array $u): void {
+  boot_session(); session_regenerate_id(true); unset($_SESSION['pending_2fa']);
+  $_SESSION['user']=['id'=>$u['id'],'name'=>$u['name'],'email'=>$u['email'],'role'=>$u['role']];
+  audit('login');
+}
+function attempt_login(string $email, string $pass): bool { $u=verify_credentials($email,$pass); if($u){ complete_login($u); return true; } return false; }
 function logout(): void { boot_session(); audit('logout'); $_SESSION=[]; session_destroy(); }
 function role_home(string $r): string { return $r==='admin'?'/portal/admin/':($r==='abogado'?'/portal/abogado/':'/portal/cliente/'); }
 function h($s){ return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }

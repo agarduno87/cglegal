@@ -4,7 +4,7 @@ const ROLES = ['admin','abogado','cliente'];
 const STATUSES = ['nuevo','en_proceso','cerrado'];
 
 /* ---- Usuarios ---- */
-function users_all(): array { return db()->query("SELECT id,name,email,role,active,created_at FROM users ORDER BY role,name")->fetchAll(PDO::FETCH_ASSOC); }
+function users_all(): array { return db()->query("SELECT id,name,email,role,active,twofa,created_at FROM users ORDER BY role,name")->fetchAll(PDO::FETCH_ASSOC); }
 function users_by_role(string $r): array { $s=db()->prepare("SELECT id,name FROM users WHERE role=? AND active=1 ORDER BY name"); $s->execute([$r]); return $s->fetchAll(PDO::FETCH_ASSOC); }
 function user_get(int $id): ?array { $s=db()->prepare("SELECT * FROM users WHERE id=?"); $s->execute([$id]); return $s->fetch(PDO::FETCH_ASSOC) ?: null; }
 function user_email_exists(string $e, int $except=0): bool { $s=db()->prepare("SELECT id FROM users WHERE email=? AND id<>?"); $s->execute([$e,$except]); return (bool)$s->fetch(); }
@@ -13,6 +13,8 @@ function user_update(int $id,string $n,string $r,int $active): void { db()->prep
 function user_reset_pw(int $id,string $p): void { db()->prepare("UPDATE users SET password_hash=? WHERE id=?")->execute([password_hash($p,PASSWORD_DEFAULT),$id]); }
 function user_delete(int $id): void { db()->prepare("DELETE FROM users WHERE id=?")->execute([$id]); }
 function admins_active_count(int $except=0): int { $s=db()->prepare("SELECT COUNT(*) FROM users WHERE role='admin' AND active=1 AND id<>?"); $s->execute([$except]); return (int)$s->fetchColumn(); }
+function user_set_2fa(int $id,string $secret): void { db()->prepare("UPDATE users SET twofa=1,totp_secret=? WHERE id=?")->execute([$secret,$id]); }
+function user_disable_2fa(int $id): void { db()->prepare("UPDATE users SET twofa=0,totp_secret=NULL WHERE id=?")->execute([$id]); }
 
 /* ---- Asuntos ---- */
 function cases_all(): array { return db()->query("SELECT c.*, cl.name AS client_name, lw.name AS lawyer_name FROM cases c LEFT JOIN users cl ON cl.id=c.client_id LEFT JOIN users lw ON lw.id=c.lawyer_id ORDER BY c.updated_at DESC, c.created_at DESC")->fetchAll(PDO::FETCH_ASSOC); }

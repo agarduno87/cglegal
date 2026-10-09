@@ -58,4 +58,11 @@ nombre aleatorio), almacenada **fuera de la raíz pública** en `db/uploads/` (c
 Sesión HttpOnly+SameSite+Secure, `session_regenerate_id`, CSRF por formulario,
 `password_hash`/`password_verify`, control por rol y **por asunto** (403), prepared
 statements, bitácora (`audit_log`), subida de documentos endurecida.
-Pendiente: bloqueo por intentos de login, y migración/staging en GoDaddy (MySQL).
+- **2FA (TOTP)** opcional por usuario en `/portal/2fa.php` (Google Authenticator/Authy/
+  1Password; `lib/totp.php`, sin servicios externos). Login en 2 pasos; el admin puede
+  quitar el 2FA a un usuario que perdió su dispositivo (en Usuarios).
+- **Anti fuerza bruta**: `login_attempts` + bloqueo por cuenta (5) y por IP (12) en 15 min;
+  evento `login_blocked` en bitácora.
+- **Errores**: `display_errors` OFF salvo `APP_DEBUG=1` (local); handler genérico en prod.
+
+Pendiente: migración/staging en GoDaddy (MySQL).
